@@ -5,33 +5,33 @@
 #include <iostream>
 #include <exception>
 
-# define HIGHEST_GRADE 1
-# define LOWEST_GRADE 150
-
-
+class Bureaucrat;
 
 class Form {
 	private :
 		const std::string	_name;
 		bool				_isSigned;
-		unsigned int		_gradeToSign;
-		unsigned int		_gradeToExec;
+		const unsigned int	_gradeToSign;
+		const unsigned int	_gradeToExec;
 
 		Form( void );
 		//Error check___________
 			static unsigned int	gradeValidation(unsigned int grade);
 
 	public :
-		Form(std::string name, unsigned int grade);
+		Form(std::string name, unsigned int gradeToSign, unsigned int _gradeToExec);
 		Form(const Form &cpy);
 		Form &operator=(const Form &src);
 		~Form();
 
-		//member functions
+		//Getters________
 			std::string		getName(void) const;
-			unsigned int	getGrade(void) const;
-			void			incrementGrade(void);
-			void			decrementGrade(void);
+			bool			getIsSigned() const;
+			unsigned int	getGradeToSign(void) const;
+			unsigned int	getGradeToExec(void) const;
+
+		//Setters________
+			void			beSigned(const Bureaucrat &B);
 
 		//Error / Exeptions
 			class GradeTooHighException : public std::exception {

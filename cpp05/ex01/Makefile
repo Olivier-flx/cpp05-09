@@ -9,13 +9,15 @@ FLAGS = $(C_FLAGS) $(DEPS_FLAGS)
 
 BUILD_DIR = build
 
-CPP_FILES = Form.cpp
+CPP_FILES = Bureaucrat.cpp \
+			Form.cpp
 
 SRC = main.cpp \
 	$(addprefix src/, $(CPP_FILES))
 
 
-HPP_FILES = Form.hpp
+HPP_FILES = Bureaucrat.hpp \
+			Form.hpp
 
 HEADERS = $(addprefix headers/, $(HPP_FILES))
 
