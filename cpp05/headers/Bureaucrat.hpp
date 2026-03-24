@@ -46,5 +46,4 @@ class Bureaucrat {
 
 std::ostream& operator<<(std::ostream& stream, const Bureaucrat &src);
 
-
 #endif
