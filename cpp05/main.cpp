@@ -5,10 +5,10 @@ int	main (void)
 	Bureaucrat	B1("B1", 1);
 	std::cout << B1 << std::endl;
 	try {
-		B1.decrementGrade();
+		B1.incrementGrade();
 	}
 	catch (std::exception & e) {
-		std::cout << "error catched while incrementing grade of" << B1.getName() << std::endl;
+		std::cout << "Error caught: " << e.what() << " for " << B1.getName() << std::endl;
 	}
 	std::cout << B1 << std::endl;
 	try {

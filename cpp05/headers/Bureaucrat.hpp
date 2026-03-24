@@ -3,6 +3,7 @@
 
 #include <string>
 #include <iostream>
+#include <exception>
 
 # define HIGHEST_GRADE 1
 # define LOWEST_GRADE 150
@@ -11,13 +12,11 @@
 
 class Bureaucrat {
 	private :
-		std::string		_name;
-		unsigned int	_grade;
+		const std::string	_name;
+		unsigned int		_grade;
 
 		Bureaucrat( void );
-		// errors
-			static void		GradeTooHighException();
-			static void 	GradeTooLowException() ;
+		//Error check___________
 			static unsigned int	gradeValidation(unsigned int grade);
 
 	public :
@@ -31,6 +30,18 @@ class Bureaucrat {
 			unsigned int	getGrade(void) const;
 			void			incrementGrade(void);
 			void			decrementGrade(void);
+
+		//Error / Exeptions
+			class GradeTooHighException : public std::exception {
+				public:
+					virtual const char* what() const throw();
+			};
+			// throw() = garantie que what() ne lance pas elle-même d'exception
+
+			class GradeTooLowException : public std::exception {
+				public:
+					virtual const char* what() const throw();
+			};
 };
 
 std::ostream& operator<<(std::ostream& stream, const Bureaucrat &src);
