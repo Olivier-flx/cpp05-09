@@ -1,5 +1,8 @@
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include "AForm.hpp"
+#include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
 
 int	main (void)
 {
@@ -12,9 +15,9 @@ int	main (void)
 		std::cerr << "Error caught: " << e.what() << " for " << B1.getName() << std::endl;
 	}
 
-	Form	f1("Best Form", 1, 1);
+	ShrubberyCreationForm s1("Jardin");
 
-	try { B1.signForm(f1);}
+	try { B1.signForm(s1);}
 	catch(const std::exception& e) { std::cerr << "Error caught: " << e.what() << '\n'; }
 
 
@@ -22,7 +25,7 @@ int	main (void)
 	try { B1.decrementGrade();}
 	catch(const std::exception& e) { std::cerr << "Error caught: " << e.what() << '\n'; }
 
-	try { B1.signForm(f1) ;}
+	try { B1.signForm(s1) ;}
 	catch(const std::exception& e) {
 		std::cerr << "Error caught: " << e.what() << '\n';
 	}

@@ -31,6 +31,7 @@ unsigned int	AForm::gradeValidation(unsigned int grade)
 AForm::AForm(std::string name, unsigned int gradeToSign, unsigned int gradeToExec) :
 					_name(name),
 					_isSigned(false),
+					_isExecuted(false),
 					_gradeToSign(gradeValidation(gradeToSign)),
 					_gradeToExec(gradeValidation(gradeToExec))
 {
@@ -40,6 +41,7 @@ AForm::AForm(std::string name, unsigned int gradeToSign, unsigned int gradeToExe
 AForm::AForm(const AForm &cpy) :
 			_name(cpy._name),
 			_isSigned(cpy._isSigned),
+			_isExecuted(cpy._isExecuted),
 			_gradeToSign(cpy._gradeToSign),
 			_gradeToExec(cpy._gradeToExec)
 {
@@ -50,6 +52,7 @@ AForm &AForm::operator= (const AForm &src)
 {
 	if (this != &src) {
 		_isSigned = src._isSigned;
+		_isExecuted = src._isExecuted;
 	}
 	std::cout << "Overload = assignment has been called!" << std::endl;
 	return *this;
@@ -62,6 +65,7 @@ AForm::~AForm(){
 // GETTERS________________________
 std::string		AForm::getName() const			{ return (_name);};
 bool			AForm::getIsSigned() const		{ return (_isSigned);};
+bool			AForm::getIsExecuted() const	{ return (_isExecuted);};
 unsigned int	AForm::getGradeToSign() const	{ return (_gradeToSign);};
 unsigned int	AForm::getGradeToExec() const	{ return (_gradeToExec);};
 
@@ -74,6 +78,8 @@ void	AForm::beSigned(const Bureaucrat &B)
 	_isSigned = true;
 }
 
+void	AForm::setExecuted() { this->_isExecuted = true; };
+void	AForm::setSigned() { this->_isSigned = true; };
 
 // EXCEPTIONS ________________________
 const char* AForm::GradeTooHighException::what() const throw() {
@@ -81,4 +87,11 @@ const char* AForm::GradeTooHighException::what() const throw() {
 }
 const char* AForm::GradeTooLowException::what() const throw() {
 	return "Error: grade is too low to sign or execute";
+}
+const char* AForm::FormNotSignedException::what() const throw() {
+	return "Error: Form need to be signed before execution";
+}
+
+const char* AForm::AlreadyExecutedException::what() const throw() {
+	return "Error: this form as already been executed";
 }

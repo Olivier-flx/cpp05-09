@@ -10,14 +10,19 @@ FLAGS = $(C_FLAGS) $(DEPS_FLAGS)
 BUILD_DIR = build
 
 CPP_FILES = Bureaucrat.cpp \
-			Form.cpp
+			AForm.cpp \
+			ShrubberyCreationForm.cpp \
+			RobotomyRequestForm.cpp \
+			PresidentialPardonForm.cpp
 
 SRC = main.cpp \
 	$(addprefix src/, $(CPP_FILES))
 
-
 HPP_FILES = Bureaucrat.hpp \
-			Form.hpp
+			AForm.hpp \
+			ShrubberyCreationForm.hpp \
+			RobotomyRequestForm.hpp \
+			PresidentialPardonForm.hpp
 
 HEADERS = $(addprefix headers/, $(HPP_FILES))
 

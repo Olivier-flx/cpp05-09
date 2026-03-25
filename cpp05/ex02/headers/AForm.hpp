@@ -7,10 +7,12 @@
 
 class Bureaucrat;
 
+//VIRTUAL
 class AForm {
 	private :
 		const std::string	_name;
 		bool				_isSigned;
+		bool				_isExecuted;
 		const unsigned int	_gradeToSign;
 		const unsigned int	_gradeToExec;
 
@@ -19,9 +21,6 @@ class AForm {
 			static unsigned int	gradeValidation(unsigned int grade);
 
 	public :
-		virtual void execute(Bureaucrat const & executor) const = 0;
-
-
 		AForm(std::string name, unsigned int gradeToSign, unsigned int _gradeToExec);
 		AForm(const AForm &cpy);
 		AForm &operator=(const AForm &src);
@@ -30,14 +29,17 @@ class AForm {
 		//Getters________
 			std::string		getName(void) const;
 			bool			getIsSigned() const;
+			bool			getIsExecuted() const;
 			unsigned int	getGradeToSign(void) const;
 			unsigned int	getGradeToExec(void) const;
 
 		//Setters________
 			void			beSigned(const Bureaucrat &B);
+			void			setExecuted();
+			void			setSigned();
 
 		// METHODS_________
-			void	execute(Bureaucrat const & executor) const;
+			virtual void execute(Bureaucrat const & executor) const = 0;
 
 
 		//Error / Exeptions
@@ -48,6 +50,16 @@ class AForm {
 			// throw() = garantie que what() ne lance pas elle-même d'exception
 
 			class GradeTooLowException : public std::exception {
+				public:
+					virtual const char* what() const throw();
+			};
+
+			class FormNotSignedException : public std::exception {
+				public:
+					virtual const char* what() const throw();
+			};
+
+			class AlreadyExecutedException : public std::exception {
 				public:
 					virtual const char* what() const throw();
 			};
