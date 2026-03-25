@@ -4,7 +4,7 @@
 
 
 PresidentialPardonForm::PresidentialPardonForm (std::string target)
-		: AForm("PresidentialPardon Creation", 25, 5),
+		: AForm("PresidentialPardon Form", 25, 5),
 		_target(target)
 {
 	std::cout << "PresidentialPardon Constructor called" << std::endl;

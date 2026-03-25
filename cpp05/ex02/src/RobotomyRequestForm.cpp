@@ -4,7 +4,7 @@
 
 
 RobotomyRequestForm::RobotomyRequestForm (std::string target)
-		: AForm("Robotomy Creation", 72, 45),
+		: AForm("Robotomy Form", 72, 45),
 		_target(target)
 {
 	std::cout << "Robotomy Constructor called" << std::endl;
