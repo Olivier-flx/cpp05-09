@@ -36,7 +36,6 @@ class AForm {
 		//Setters________
 			void			beSigned(const Bureaucrat &B);
 			void			setExecuted();
-			void			setSigned();
 
 		// METHODS_________
 			virtual void execute(Bureaucrat const & executor) const = 0;

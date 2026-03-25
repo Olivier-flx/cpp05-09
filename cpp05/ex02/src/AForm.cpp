@@ -79,7 +79,6 @@ void	AForm::beSigned(const Bureaucrat &B)
 }
 
 void	AForm::setExecuted() { this->_isExecuted = true; };
-void	AForm::setSigned() { this->_isSigned = true; };
 
 // EXCEPTIONS ________________________
 const char* AForm::GradeTooHighException::what() const throw() {

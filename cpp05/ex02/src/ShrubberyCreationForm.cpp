@@ -12,7 +12,7 @@ ShrubberyCreationForm::ShrubberyCreationForm (std::string target)
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &cpy)
-		: AForm(cpy.getName(), cpy.getGradeToSign(), cpy.getGradeToExec()),
+		: AForm(cpy),
 		_target(cpy._target)
 {
 	std::cout << "Shrubbery Copy Constructor called" << std::endl;
@@ -21,10 +21,8 @@ ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &cpy)
 ShrubberyCreationForm	&ShrubberyCreationForm::operator= (const ShrubberyCreationForm &src)
 {
 	if (this != &src) {
-		if (src.getIsSigned())
-			setSigned();
-		if (src.getIsExecuted())
-			setExecuted();
+		AForm::operator=(src);
+		this->_target = src._target;
 	}
 	std::cout << "ShrubberyCreationForm Overload = assignment has been called!" << std::endl;
 	return *this;
@@ -52,6 +50,7 @@ void	ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 		return ;
 	}
 
+	outFile << "                      \n";
 	outFile << "          &&& &&  & &&\n";
 	outFile << "      && &\\/&\\|& ()|/ @,&\n";
 	outFile << "      &\\/(/&/&||/& /_/)_&/&\n";
@@ -66,4 +65,5 @@ void	ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 	outFile << "       , -=-~  .-^- _\n";
 
 	outFile.close();
+	this->getIsExecuted();
 }
