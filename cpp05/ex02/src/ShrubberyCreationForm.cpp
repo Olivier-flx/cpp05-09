@@ -2,6 +2,7 @@
 #include "Bureaucrat.hpp"
 #include "ShrubberyCreationForm.hpp"
 #include <fstream>
+#include <cstring>
 
 
 ShrubberyCreationForm::ShrubberyCreationForm (std::string target)
@@ -41,10 +42,10 @@ void	ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 		throw AForm::GradeTooLowException();
 	if (!this->getIsSigned())
 		throw AForm::FormNotSignedException();
-	if (this->getIsExecuted())
-		throw AForm::AlreadyExecutedException();
+	// if (this->getIsExecuted())
+	// 	throw AForm::AlreadyExecutedException();
 
-	std::ofstream outFile(_target + "_shrubbery");
+	std::ofstream outFile((_target + "_shrubbery").c_str());
 	if (!outFile.is_open()) {
 		std::cerr << "Error: Could not create the file!" << std::endl;
 		return ;
@@ -65,5 +66,5 @@ void	ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 	outFile << "       , -=-~  .-^- _\n";
 
 	outFile.close();
-	this->getIsExecuted();
+	//this->setExecuted();
 }

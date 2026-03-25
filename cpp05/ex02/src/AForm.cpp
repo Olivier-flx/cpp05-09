@@ -59,13 +59,13 @@ AForm &AForm::operator= (const AForm &src)
 }
 
 AForm::~AForm(){
-	std::cout << "destructor called" << std::endl;
+	std::cout << "AForm destructor called" << std::endl;
 }
 
 // GETTERS________________________
 std::string		AForm::getName() const			{ return (_name);};
 bool			AForm::getIsSigned() const		{ return (_isSigned);};
-bool			AForm::getIsExecuted() const	{ return (_isExecuted);};
+//bool			AForm::getIsExecuted() const	{ return (_isExecuted);};
 unsigned int	AForm::getGradeToSign() const	{ return (_gradeToSign);};
 unsigned int	AForm::getGradeToExec() const	{ return (_gradeToExec);};
 
@@ -78,7 +78,7 @@ void	AForm::beSigned(const Bureaucrat &B)
 	_isSigned = true;
 }
 
-void	AForm::setExecuted() { this->_isExecuted = true; };
+//void	AForm::setExecuted() { this->_isExecuted = true; };
 
 // EXCEPTIONS ________________________
 const char* AForm::GradeTooHighException::what() const throw() {
@@ -91,6 +91,6 @@ const char* AForm::FormNotSignedException::what() const throw() {
 	return "Error: Form need to be signed before execution";
 }
 
-const char* AForm::AlreadyExecutedException::what() const throw() {
-	return "Error: this form as already been executed";
-}
+// const char* AForm::AlreadyExecutedException::what() const throw() {
+// 	return "Error: this form as already been executed";
+// }

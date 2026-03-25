@@ -29,13 +29,13 @@ class AForm {
 		//Getters________
 			std::string		getName(void) const;
 			bool			getIsSigned() const;
-			bool			getIsExecuted() const;
+			//bool			getIsExecuted() const;
 			unsigned int	getGradeToSign(void) const;
 			unsigned int	getGradeToExec(void) const;
 
 		//Setters________
 			void			beSigned(const Bureaucrat &B);
-			void			setExecuted();
+			//void			setExecuted();
 
 		// METHODS_________
 			virtual void execute(Bureaucrat const & executor) const = 0;
@@ -58,10 +58,10 @@ class AForm {
 					virtual const char* what() const throw();
 			};
 
-			class AlreadyExecutedException : public std::exception {
-				public:
-					virtual const char* what() const throw();
-			};
+			// class AlreadyExecutedException : public std::exception {
+			// 	public:
+			// 		virtual const char* what() const throw();
+			// };
 };
 
 std::ostream& operator<<(std::ostream& stream, const AForm &src);

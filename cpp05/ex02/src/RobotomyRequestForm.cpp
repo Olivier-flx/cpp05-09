@@ -38,19 +38,18 @@ void	RobotomyRequestForm::execute(Bureaucrat const & executor) const
 		throw AForm::GradeTooLowException();
 	if (!this->getIsSigned())
 		throw AForm::FormNotSignedException();
-	if (this->getIsExecuted())
-		throw AForm::AlreadyExecutedException();
+	// if (this->getIsExecuted())
+	// 	throw AForm::AlreadyExecutedException();
 
 	std::cout << _target << "   Drill starting---- " << std::endl;
 	std::cout << "Driiiiiiiiiiiiillll Driiiiiiiiiiiiillll " << std::endl;
 
-	std::srand(std::time(0));
 	if (rand() % 2)
 		std::cout << _target << " has been sucessfly robotomized!" << std::endl;
 	else
 		std::cout << _target << " failed to robotomize!" << std::endl;
 
-	this->getIsExecuted();
+	//this->setExecuted();
 }
 //Random number function
 //https://www.youtube.com/watch?v=-NA_B_vJP14

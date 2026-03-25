@@ -9,7 +9,7 @@
 # define LOWEST_GRADE 150
 
 
-class Form;
+class AForm;
 
 class Bureaucrat {
 	private :

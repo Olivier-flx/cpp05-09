@@ -38,9 +38,9 @@ void	PresidentialPardonForm::execute(Bureaucrat const & executor) const
 		throw AForm::GradeTooLowException();
 	if (!this->getIsSigned())
 		throw AForm::FormNotSignedException();
-	if (this->getIsExecuted())
-		throw AForm::AlreadyExecutedException();
+	// if (this->getIsExecuted())
+	// 	throw AForm::AlreadyExecutedException();
 
 	std::cout << _target << " has been pardoned by Zaphod Beeblebrox." << std::endl;
-	this->getIsExecuted();
+	//this->setExecuted();
 }
