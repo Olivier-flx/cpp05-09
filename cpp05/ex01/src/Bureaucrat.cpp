@@ -11,7 +11,7 @@ Bureaucrat::Bureaucrat() : _name("Default"), _grade(LOWEST_GRADE)
 	std::cout << "Default constructor called" << std::endl;
 }
 
-unsigned int	Bureaucrat::gradeValidation(unsigned int grade)
+int	Bureaucrat::gradeValidation(int grade)
 {
 	if (grade > LOWEST_GRADE )
 		throw GradeTooLowException();
@@ -22,7 +22,7 @@ unsigned int	Bureaucrat::gradeValidation(unsigned int grade)
 
 //PUBLIC__________________________________
 //PUBLIC CONSTRUCTORS_____________________
-Bureaucrat::Bureaucrat(std::string name, unsigned int grade) :
+Bureaucrat::Bureaucrat(std::string name, int grade) :
 					_name(name),
 					_grade(gradeValidation(grade))
 {
@@ -54,7 +54,7 @@ Bureaucrat::~Bureaucrat(){
 std::string		Bureaucrat::getName() const {
 	return (_name);
 };
-unsigned int	Bureaucrat::getGrade() const {
+int	Bureaucrat::getGrade() const {
 	return (_grade);
 };
 

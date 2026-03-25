@@ -17,7 +17,7 @@ Form::Form() : _name("Default"), _isSigned(false), _gradeToSign(HIGHEST_GRADE), 
 	std::cout << "Default constructor called" << std::endl;
 }
 
-unsigned int	Form::gradeValidation(unsigned int grade)
+int	Form::gradeValidation(int grade)
 {
 	if (grade > LOWEST_GRADE )
 		throw GradeTooLowException();
@@ -28,7 +28,7 @@ unsigned int	Form::gradeValidation(unsigned int grade)
 
 //PUBLIC__________________________________
 //PUBLIC CONSTRUCTORS_____________________
-Form::Form(std::string name, unsigned int gradeToSign, unsigned int gradeToExec) :
+Form::Form(std::string name, int gradeToSign, int gradeToExec) :
 					_name(name),
 					_isSigned(false),
 					_gradeToSign(gradeValidation(gradeToSign)),
@@ -62,8 +62,8 @@ Form::~Form(){
 // GETTERS________________________
 std::string		Form::getName() const			{ return (_name);};
 bool			Form::getIsSigned() const		{ return (_isSigned);};
-unsigned int	Form::getGradeToSign() const	{ return (_gradeToSign);};
-unsigned int	Form::getGradeToExec() const	{ return (_gradeToExec);};
+int	Form::getGradeToSign() const	{ return (_gradeToSign);};
+int	Form::getGradeToExec() const	{ return (_gradeToExec);};
 
 
 // SETTERS________________________

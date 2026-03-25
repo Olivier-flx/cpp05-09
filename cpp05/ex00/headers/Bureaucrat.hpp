@@ -13,21 +13,21 @@
 class Bureaucrat {
 	private :
 		const std::string	_name;
-		unsigned int		_grade;
+		int		_grade;
 
 		Bureaucrat( void );
 		//Error check___________
-			static unsigned int	gradeValidation(unsigned int grade);
+			static int	gradeValidation(int grade);
 
 	public :
-		Bureaucrat(std::string name, unsigned int grade);
+		Bureaucrat(std::string name, int grade);
 		Bureaucrat(const Bureaucrat &cpy);
 		Bureaucrat &operator=(const Bureaucrat &src);
 		~Bureaucrat();
 
 		//member functions
 			std::string		getName(void) const;
-			unsigned int	getGrade(void) const;
+			int	getGrade(void) const;
 			void			incrementGrade(void);
 			void			decrementGrade(void);
 

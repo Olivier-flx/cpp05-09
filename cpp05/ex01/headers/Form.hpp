@@ -11,15 +11,15 @@ class Form {
 	private :
 		const std::string	_name;
 		bool				_isSigned;
-		const unsigned int	_gradeToSign;
-		const unsigned int	_gradeToExec;
+		const int	_gradeToSign;
+		const int	_gradeToExec;
 
 		Form( void );
 		//Error check___________
-			static unsigned int	gradeValidation(unsigned int grade);
+			static int	gradeValidation(int grade);
 
 	public :
-		Form(std::string name, unsigned int gradeToSign, unsigned int _gradeToExec);
+		Form(std::string name, int gradeToSign, int _gradeToExec);
 		Form(const Form &cpy);
 		Form &operator=(const Form &src);
 		~Form();
@@ -27,8 +27,8 @@ class Form {
 		//Getters________
 			std::string		getName(void) const;
 			bool			getIsSigned() const;
-			unsigned int	getGradeToSign(void) const;
-			unsigned int	getGradeToExec(void) const;
+			int	getGradeToSign(void) const;
+			int	getGradeToExec(void) const;
 
 		//Setters________
 			void			beSigned(const Bureaucrat &B);

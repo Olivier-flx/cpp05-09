@@ -1,8 +1,12 @@
 #include "Bureaucrat.hpp"
+#include "Intern.hpp"
 #include "AForm.hpp"
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
+
+#include <cstdlib>
+#include <ctime>
 
 int	main (void)
 {
@@ -11,8 +15,8 @@ int	main (void)
 
 /////
 	std::cout << "\n================ CREATING BUREAUCRATS ================\n" << std::endl;
-	Bureaucrat	B1("Big Boss", 1);
-	Bureaucrat	B2("Larbin / Flunkey", 140);
+	Bureaucrat	B1("Boss", 1);
+	Bureaucrat	B2("Intern", 140);
 
 	std::cout << B1 << std::endl;
 	std::cout << B2 << std::endl;
@@ -73,5 +77,34 @@ int	main (void)
 	catch(const std::exception& e) { std::cerr << "Error caught: " << e.what() << '\n'; }
 
 	std::cout << std::endl;
+
+	std::cout << "\n\n================ TEST: INTERNS ================\n" << std::endl;
+
+	Intern someRandomIntern;
+	AForm* rrf;
+	rrf = someRandomIntern.makeForm("robotomy request", "Bender");
+	std::cout << std::endl;
+	if (!rrf) {
+		std::cout << "rrf is NULL" << std::endl;
+	}
+	else
+	{
+		try { B1.signForm(*rrf); } catch(const std::exception& e) { std::cerr << "Error caught: " << e.what() << '\n'; }
+		try { B1.executeForm(*rrf); } catch(const std::exception& e) { std::cerr << "Error caught: " << e.what() << '\n'; }
+		try { B2.executeForm(*rrf); } catch(const std::exception& e) { std::cerr << "Error caught: " << e.what() << '\n'; }
+		delete rrf;
+	}
+	AForm* failForm;
+	failForm = someRandomIntern.makeForm("papiers du vehicule", "Bender");
+
+	if (failForm != NULL) {
+		delete failForm;
+	}
+	else
+	{
+		std::cout << "pointeur Is NULL, and it's normal" << std::endl;
+	}
+
+
 	return 0;
 }

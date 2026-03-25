@@ -1,0 +1,70 @@
+#include "AForm.hpp"
+#include "Bureaucrat.hpp"
+#include "ShrubberyCreationForm.hpp"
+#include <fstream>
+#include <cstring>
+
+
+ShrubberyCreationForm::ShrubberyCreationForm (std::string target)
+		: AForm("Shrubbery Form", 145, 137),
+		_target(target)
+{
+	std::cout << "Shrubbery Constructor called" << std::endl;
+}
+
+ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &cpy)
+		: AForm(cpy),
+		_target(cpy._target)
+{
+	std::cout << "Shrubbery Copy Constructor called" << std::endl;
+}
+
+ShrubberyCreationForm	&ShrubberyCreationForm::operator= (const ShrubberyCreationForm &src)
+{
+	if (this != &src) {
+		AForm::operator=(src);
+		this->_target = src._target;
+	}
+	std::cout << "ShrubberyCreationForm Overload = assignment has been called!" << std::endl;
+	return *this;
+}
+
+ShrubberyCreationForm::~ShrubberyCreationForm(){
+	std::cout << "Shrubbery Destructor called" << std::endl;
+}
+
+
+
+// METHODS_________________________
+void	ShrubberyCreationForm::execute(Bureaucrat const & executor) const
+{
+	if (executor.getGrade() > this->getGradeToExec())
+		throw AForm::GradeTooLowException();
+	if (!this->getIsSigned())
+		throw AForm::FormNotSignedException();
+	// if (this->getIsExecuted())
+	// 	throw AForm::AlreadyExecutedException();
+
+	std::ofstream outFile((_target + "_shrubbery").c_str());
+	if (!outFile.is_open()) {
+		std::cerr << "Error: Could not create the file!" << std::endl;
+		return ;
+	}
+
+	outFile << "                      \n";
+	outFile << "          &&& &&  & &&\n";
+	outFile << "      && &\\/&\\|& ()|/ @,&\n";
+	outFile << "      &\\/(/&/&||/& /_/)_&/&\n";
+	outFile << "   &() &\\/&|()|/&\\/ '%\" & ()\n";
+	outFile << "  &_\\_&&_\\ |& |&&/&__%_/_& &&\n";
+	outFile << "&&   && & &| &| /& & % ()& /&&\n";
+	outFile << " ()&_---()&\\&\\|&&-&&--%---()~\n";
+	outFile << "     &&     \\|||\n";
+	outFile << "             |||\n";
+	outFile << "             |||\n";
+	outFile << "             |||\n";
+	outFile << "       , -=-~  .-^- _\n";
+
+	outFile.close();
+	//this->setExecuted();
+}
