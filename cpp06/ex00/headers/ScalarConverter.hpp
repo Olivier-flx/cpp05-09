@@ -15,7 +15,15 @@ class ScalarConverter {
 	~ScalarConverter();
 
 		//member functions
-		static void	convert(std::string str);
+		static void	convert(std::string &str) const;
+
+	class CharNotDisplayableException : public Exception {
+		throw ("Error : not displayable char");
+
+	};
+	class EmptyStringException : public Exception {
+		throw ("Error : String param is empty");
+	};
 };
 
 std::ostream& operator<<(std::ostream& stream, const ScalarConverter &src);

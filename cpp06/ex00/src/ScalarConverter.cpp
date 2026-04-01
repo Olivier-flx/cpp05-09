@@ -40,10 +40,61 @@ ScalarConverter::~ScalarConverter(){
 	std::cout << "destructor called" << std::endl;
 }
 
-// METHODS ________________________
-static void	ScalarConverter::convert()
-{
 
+// METHODS ________________________
+
+static void convertChar(char &c)
+{
+	if ( (c >= 20 && c < 127) 
+		|| (c >= 9 && c <= 11) 
+		|| c == 13 )
+	{
+		std::cout << "Char convert : " << c << std::endl; 
+
+	}
+	else
+		throw ScalarConverter::CharNotDisplayableException();
+}
+
+
+
+static void	ScalarConverter::convert(std::string &str)
+{
+	if (str.lenght() == 0)
+	{
+		throw EmptyStringException();
+		return;
+	}
+	if (str.lenght() >= 1)
+	{
+		if (str.lenght() == 1)
+		{
+			try {
+				convertChar(str[0]);
+			}
+			catch (Exception &e)
+			{
+				std::cout << what(e) << std::endl;
+			}
+		}
+		else 
+		{
+			try {
+				convertInt(str);
+			}
+			try {
+				convertFloat(str);
+			}
+			try {
+				convertDouble(str);
+			}
+			catch (...)
+			{
+				std::cout << "Unexpected error" << std::endl;
+			}
+		}
+	}
+	return;
 }
 
 const char* Bureaucrat::GradeTooHighException::what() const throw() {
