@@ -41,65 +41,140 @@ ScalarConverter::~ScalarConverter(){
 }
 
 
-// METHODS ________________________
 
-static void convertChar(char &c)
+// HELPERS
+
+bool	ScalarConverter::isChar(const std::string &str) const
 {
-	if ( (c >= 20 && c < 127) 
-		|| (c >= 9 && c <= 11) 
-		|| c == 13 )
+	if (str.size() == 1)
 	{
-		std::cout << "Char convert : " << c << std::endl; 
-
+		char c = str[0];
+		return(!std::isdigit(c))
 	}
 	else
+		return (false);
+}
+
+bool	ScalarConverter::isInterger(const std::string &str) const
+{
+	std::string::iterator it = str.begin();
+	if (*it == '+' || *it = '-')
+		it++;
+	while (it != str.end() && std::isdigit(*it))
+		++it;
+	return !str.empty() && it == str.end();
+}
+
+bool	ScalarConverter::isFloat(const std::string &str) const
+{
+	if (str == "-inff" || str == "+inff" || str == "nanf")
+		return (true);
+	 if (str.empty() || str == "f" || str == ".f")
+		return (false);
+	std::string::iterator it = str.begin();
+	if (*it == '+' || *it == '-')
+		it++;
+
+	int hasDot = 0;
+	int hasDigit = 0;
+	while (it != str.end())
+	{
+		if (std::isdigit(*it))
+			hasDigit = 1;
+		else if (*it == '.')
+		{
+			if (hasDot)
+				return (false);
+			hasDot = 1;
+		}
+		else if (*it == 'f')
+			return (hasDigit && hasDot && str.end() == it + 1);
+		else
+			return (false);
+		it++;
+	}
+	return (false);
+}
+
+bool	ScalarConverter::isDouble(const std::string &str) const
+{
+	if (str == "-inf" || str == "+inf" || str == "nan")
+		return (true);
+	 if (str.empty() || str == ".")
+		return (false);
+	std::string::iterator it = str.begin();
+	if (*it == '+' || *it == '-')
+		it++;
+
+	int hasDot = 0;
+	int hasDigit = 0;
+	while (it != str.end())
+	{
+		if (std::isdigit(*it))
+			hasDigit = 1;
+		else if (*it == '.')
+		{
+			if (hasDot)
+				return (false);
+			hasDot = 1;
+		}
+		else
+			return (false);
+		it++;
+	}
+	return (hasDigit && hasDot);
+}
+
+// CONVERTERS _________________________
+void	ScalarConverter::convertChar(const std::string &str) const
+{
+	char c = str[0];
+	if (std::isprint(c))
+	{
+		int r = c - 0;
+		std::cout << "Char convert : " << c << std::endl;
+	}
+	else
+	{
+		std::cout << " non-displayable characters" << std::endl;
 		throw ScalarConverter::CharNotDisplayableException();
+	}
+}
+
+void	convertInt(const std::string &str) const
+{
+
 }
 
 
 
+
+
+// METHODS ________________________
 static void	ScalarConverter::convert(std::string &str)
 {
-	if (str.lenght() == 0)
+	if (str.empty())
 	{
 		throw EmptyStringException();
 		return;
 	}
-	if (str.lenght() >= 1)
-	{
-		if (str.lenght() == 1)
-		{
-			try {
-				convertChar(str[0]);
-			}
-			catch (Exception &e)
-			{
-				std::cout << what(e) << std::endl;
-			}
-		}
-		else 
-		{
-			try {
-				convertInt(str);
-			}
-			try {
-				convertFloat(str);
-			}
-			try {
-				convertDouble(str);
-			}
-			catch (...)
-			{
-				std::cout << "Unexpected error" << std::endl;
-			}
-		}
-	}
+	if (ischar(str))
+		convertChar(str);
+	else if (isInteger(str))
+		convertInt(str);
+	else if (isFloat(str))
+		convertFloat(str);
+	else if (isDouble(str))
+		convertDouble(str);
+	else
+		std::cout << "Err : Unknown type." << std::endl;
 	return;
 }
 
-const char* Bureaucrat::GradeTooHighException::what() const throw() {
-	return "Error: grade is too high (min is 1)";
+const char* ScalarConverter::CharNotDisplayableException::what() const throw() {
+	return "Error : not displayable char";
 }
-const char* Bureaucrat::GradeTooLowException::what() const throw() {
-	return "Error: grade is too low (max is 150)";
+
+const char *ScalarConverter::EmptyStringException::what() const throw() {
+	return "Error : String param is empty";
 }

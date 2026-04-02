@@ -1,36 +1,13 @@
-#include "Bureaucrat.hpp"
+#include "ScalarConverter.hpp"
 
-int	main (void)
+int	main (int ac, char **argv)
 {
-	Bureaucrat	B1("B1", 1);
-	std::cout << B1 << std::endl;
-	try {
-		B1.incrementGrade();
+	if (ac != 2)
+	{
+		std::cout << "you must give an argument\n";
+		return (EXIT_FAILURE);
 	}
-	catch (std::exception & e) {
-		std::cout << "Error caught: " << e.what() << " for " << B1.getName() << std::endl;
-	}
-	std::cout << B1 << std::endl;
-	try {
-		Bureaucrat B2("B2", 0);
-	}
-	catch (const std::exception& e) {
-		std::cerr << e.what() << std::endl;
-	}
-
-	try {
-		Bureaucrat B3("B3", 151);
-	}
-	catch(const std::exception& e) {
-		std::cerr << e.what() << std::endl;
-	}
-
-	Bureaucrat B4("B4", 150);
-	std::cout << B4 << std::endl;
-	try {
-		B4.decrementGrade();
-	}
-	catch(const std::exception& e) {
-		std::cerr << e.what() << std::endl;
-	}
+	std::string str = argv[1];
+	ScalarConverter::convert(str);
+	return (EXIT_SUCCESS);
 }
