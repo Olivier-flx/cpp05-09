@@ -1,9 +1,13 @@
 #ifndef SCALAR_CONVERTER_HPP
 #define SCALAR_CONVERTER_HPP
 
+#include <cstdlib>
 #include <string>
 #include <iostream>
 #include <exception>
+#include <climits>
+#include <cmath>
+#include <iomanip>
 
 class ScalarConverter {
 	private :
@@ -13,16 +17,17 @@ class ScalarConverter {
 		~ScalarConverter();
 
 
-		bool	ischar(const std::string &str) const;
-		bool	isInteger(const std::string &str) const;
-		bool	isFloat(const std::string &str) const;
-		bool	isDouble(const std::string &str) const;
-		bool	isInfinite(const std::string &str) const;
+		static bool	isChar(const std::string &str);
+		static bool	isInt(const std::string &str);
+		static bool	isFloat(const std::string &str);
+		static bool	isDouble(const std::string &str);
 
-		void	convertChar(const std::string &str) const;
-		void	convertInt(const std::string &str) const;
-		void	convertFloat(const std::string &str) const;
-		void	convertDouble(const std::string &str) const;
+		static void	convertChar(const std::string &str);
+		static void	convertInt(const std::string &str);
+		static void	convertFloat(const std::string &str);
+		static void	convertDouble(const std::string &str);
+
+		static void	displayAll(double d);
 
 		// EXCEPTIONS
 			class CharNotDisplayableException : public std::exception {
@@ -36,11 +41,9 @@ class ScalarConverter {
 
 	public :
 		//member functions
-		static void	convert(std::string &str) const;
+		static void	convert(const std::string &str);
 
 
 };
-
-std::ostream& operator<<(std::ostream& stream, const ScalarConverter &src);
 
 #endif

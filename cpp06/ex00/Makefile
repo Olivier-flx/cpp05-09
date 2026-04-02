@@ -1,4 +1,4 @@
-NAME = admin
+NAME = convert
 
 COMP = c++
 
@@ -9,13 +9,13 @@ FLAGS = $(C_FLAGS) $(DEPS_FLAGS)
 
 BUILD_DIR = build
 
-CPP_FILES = Bureaucrat.cpp
+CPP_FILES = ScalarConverter.cpp
 
 SRC = main.cpp \
 	$(addprefix src/, $(CPP_FILES))
 
 
-HPP_FILES = Bureaucrat.hpp
+HPP_FILES = ScalarConverter.hpp
 
 HEADERS = $(addprefix headers/, $(HPP_FILES))
 
