@@ -5,20 +5,17 @@
 #include <string>
 #include <iostream>
 
-/* Inclusion de la bibliothèque standard pour uintptr_t  */
-#include <stdint.h>
+#include <ctime>
 
 
 class Base {
 	private :
-
 	public :
 		virtual ~Base();
-
-		//member functions
-		Base * generate(void);
-		void identify(Base* p);
-		void identify(Base& p);
 };
+
+Base*	generate(void);
+void	identify(Base* p);
+void	identify(Base& p);
 
 #endif

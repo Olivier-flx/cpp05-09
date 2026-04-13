@@ -1,10 +1,10 @@
 #include "Base.hpp"
 
-static void test_print(base &base)
+static void test_print(Base &base)
 {
 	static int i = 0;
 
-	std::cout << "======= test : " << 'd' + i << " ========\n";
+	std::cout << "======= test : " << static_cast<char> ('d' + i) << " ========\n";
 		identify(&base);
 		identify(base);
 	std::cout << std::endl << std::endl;
@@ -30,12 +30,12 @@ int	main (int ac, char **argv)
 	Base *h = generate();
 	Base *i = generate();
 
-	void test_print(d);
-	void test_print(e);
-	void test_print(f);
-	void test_print(g);
-	void test_print(h);
-	void test_print(i);
+	test_print(*d);
+	test_print(*e);
+	test_print(*f);
+	test_print(*g);
+	test_print(*h);
+	test_print(*i);
 
 	delete d;
 	delete e;

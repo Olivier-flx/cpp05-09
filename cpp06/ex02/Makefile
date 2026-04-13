@@ -1,4 +1,4 @@
-NAME = Identify
+NAME = identify
 
 COMP = c++
 
