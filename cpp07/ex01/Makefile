@@ -1,4 +1,4 @@
-NAME = whatev
+NAME = it
 
 COMP = c++
 
@@ -11,7 +11,7 @@ BUILD_DIR = build
 
 SRC = main.cpp
 
-HPP_FILES = whatever.hpp
+HPP_FILES = iter.hpp
 
 HEADERS = $(addprefix headers/, $(HPP_FILES))
 
